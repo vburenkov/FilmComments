@@ -7,4 +7,6 @@ Parsers/FilmParser/.vs/FilmParser/v17/.futdcache.v1
 Parsers/FilmParser/.vs/FilmParser/v17/.suo
 
 /Parsers/FilmParser/FilmParser/obj/*
-Parsers/FilmParser/.vs/FilmParser/v16/.suo
+Parsers/FilmParser/.vs/*
+Parsers/FilmParser/bin/*
+Parsers/FilmParser/FilmParser/bin/*
