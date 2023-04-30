@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FilmParser
 {
-    public class LetterboxdFilmParser : IFilmCommentsParser
+    public class MetacriticFilmParser : IFilmCommentsParser
     {
         public List<Comment> GetFilmComments(Film f)
         {

@@ -1,6 +1,6 @@
 ﻿using FilmParser;
 
-IFilmCommentsParser parser = new LetterboxdFilmParser();
+IFilmCommentsParser parser = new MetacriticFilmParser();
 var comments = parser.GetFilmComments(new Film());
 foreach (var comment in comments)
 {
