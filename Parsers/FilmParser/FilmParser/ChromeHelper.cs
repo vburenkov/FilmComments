@@ -33,25 +33,19 @@ namespace FilmParser
             var classAttr = e.GetAttribute(attrName);
             return classAttr.Contains(csvAttrs);
         }
-        public static ChromeDriver GetDriver(bool useMobile)
+
+        public static ChromeDriver GetDriver()
         {
             ChromeOptions options = new ChromeOptions();
+            options.EnableMobileEmulation("Nexus 5");
             options.AddArgument("no-sandbox");
+            options.AddArguments("disable-blink-features=AutomationControlled");
+            options.AddArgument("remote-debugging-port=9222");
 
-            if (useMobile)
-            {
-                options.EnableMobileEmulation("Nexus 5");
-            }
+            ChromeDriver drv = new ChromeDriver(ChromeDriverService.CreateDefaultService(), options, TimeSpan.FromMinutes(3));
+            drv.Manage().Timeouts().PageLoad.Add(TimeSpan.FromSeconds(20));
 
-            return new ChromeDriver(ChromeDriverService.CreateDefaultService(), options, TimeSpan.FromMinutes(6));
-        }
-
-        public static void LaunchChrome()
-        {
-            Process proc = new Process();
-            proc.StartInfo.FileName = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
-            proc.StartInfo.Arguments = "https://www.facebook.com --new-window --remote-debugging-port=9222 --user-data-dir=C:\\Temp";
-            proc.Start();
+            return drv;
         }
 
         public static ChromeDriver AttachToRunning()

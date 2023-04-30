@@ -8,6 +8,6 @@ namespace FilmParser
 {
     public interface IFilmCommentsParser
     {
-
+        List<Comment> GetFilmComments(Film f);
     }
 }

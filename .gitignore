@@ -2,9 +2,8 @@
 *.pdb
 *.v2
 *.cache
-Parsers/FilmParser/.vs/FilmParser/project-colors.json
-Parsers/FilmParser/.vs/FilmParser/v17/.futdcache.v1
-Parsers/FilmParser/.vs/FilmParser/v17/.suo
+Parsers/FilmParser/.vs/FilmParser/*
+
 
 /Parsers/FilmParser/FilmParser/obj/*
 Parsers/FilmParser/.vs/*
