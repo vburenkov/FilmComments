@@ -9,5 +9,7 @@ namespace FilmParser
     public interface IFilmCommentsParser
     {
         List<Comment> GetFilmComments(Film f);
+
+        Film GetFilmByName(string name);
     }
 }

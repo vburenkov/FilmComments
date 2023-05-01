@@ -1,9 +1,10 @@
 ﻿using FilmParser;
 
 IFilmCommentsParser parser = new MetacriticFilmParser();
-var comments = parser.GetFilmComments(new Film());
+Film f = parser.GetFilmByName("Rambo: First Blood Part II");
+var comments = parser.GetFilmComments(f);
 foreach (var comment in comments)
 {
     Console.WriteLine(comment);
-    Console.WriteLine("==================");
+    Console.WriteLine("=========================");
 }
