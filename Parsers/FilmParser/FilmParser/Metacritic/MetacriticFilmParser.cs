@@ -9,7 +9,7 @@ namespace FilmParser
         {
             using (ChromeDriver d = ChromeHelper.GetDriver())
             {
-                GoToSite(d, GetFilmReviewsUrl(f.FilmSiteName));
+                GoToSite(d, GetFilmReviewsUrl(f.ShortName));
                 var comments = GetComments(d);
                 return comments.Select(c => new Comment() { Text = c }).ToList();
             }
@@ -24,11 +24,26 @@ namespace FilmParser
                 ClosePrimarySearch(d);
                 Wait(2);
                 var shortFilmName = GetFilmShortName(d);
+                Wait(2);
+                GoToSite(d, GetFilmPage(shortFilmName));
+                var releaseDate = GetReleaseDate(d);
 
-                var film = new Film() { FilmSiteName = shortFilmName };
+                var film = new Film() 
+                {
+                    Name = name,
+                    ShortName = shortFilmName,
+                    Url = GetFilmPage(shortFilmName),
+                    ReviewsUrl = GetFilmReviewsUrl(shortFilmName),
+                    ReleaseDate = releaseDate
+                };
                 return film;
             }
-        }     
+        }
+
+        private static string GetFilmPage(string shortFilmName)
+        {
+            return $"https://www.metacritic.com/movie/{shortFilmName}";
+        }
 
         private static string GetFilmReviewsUrl(string shortFilmName)
         {
@@ -38,6 +53,14 @@ namespace FilmParser
         private static string GetFilmSearchUrl(string filmName)
         {
             return $"https://www.metacritic.com/search/movie/{filmName}/results";
+        }
+
+        private static DateOnly GetReleaseDate(ChromeDriver driver)
+        {
+            var releaseDateSpan = driver.FindElements(By.CssSelector("span.byline-data")).FirstOrDefault();
+            var releaseDateTxt = releaseDateSpan.Text;
+            var dt = DateOnly.Parse(releaseDateTxt);
+            return dt;
         }
 
         private static string GetFilmShortName(ChromeDriver driver)

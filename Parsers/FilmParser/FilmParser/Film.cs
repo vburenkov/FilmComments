@@ -10,11 +10,11 @@ namespace FilmParser
     {
         public string Name { get; set; }
 
-        public int Year { get; set; }
+        public string ShortName { get; set; }
+
+        public DateOnly ReleaseDate { get; set; }
 
         public string Url { get; set; }
-
-        public string FilmSiteName { get; set; }
 
         public string ReviewsUrl { get; set; }
     }
